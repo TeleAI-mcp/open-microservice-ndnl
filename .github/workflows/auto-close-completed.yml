@@ -2,11 +2,11 @@ name: Close completed issues
 
 on:
   issues:
-    types: [labeled]
+    types: [opened, labeled]
 
 jobs:
   close-issue:
-    if: github.event.label.name == 'completed'
+    if: contains(github.event.issue.labels.*.name, 'completed')
     runs-on: ubuntu-latest
     permissions:
       issues: write
